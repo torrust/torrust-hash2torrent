@@ -3,7 +3,7 @@
 COMPOSE="/usr/bin/docker compose --ansi never"
 DOCKER="/usr/bin/docker"
 
-cd /home/torrust/github/torrust/hash2torrent/droplet || exit
+cd /home/torrust/github/torrust/torrust-hash2torrent/droplet || exit
 
 # Run this just for testing purposes
 #$COMPOSE run certbot renew --dry-run && $COMPOSE kill -s SIGHUP proxy
