@@ -64,7 +64,7 @@ pub async fn get_metainfo_file_handler(
         Err(err) => {
             error!("error adding torrent to cache: {}", err);
         }
-    };
+    }
 
     torrent_file_response(
         bytes,

@@ -334,7 +334,7 @@ impl<'de> serde::de::Deserialize<'de> for InfoHash {
 
 struct InfoHashVisitor;
 
-impl<'v> serde::de::Visitor<'v> for InfoHashVisitor {
+impl serde::de::Visitor<'_> for InfoHashVisitor {
     type Value = InfoHash;
 
     fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
@@ -356,7 +356,7 @@ impl<'v> serde::de::Visitor<'v> for InfoHashVisitor {
                 serde::de::Unexpected::Str(v),
                 &"a hexadecimal string",
             ));
-        };
+        }
         Ok(res)
     }
 }

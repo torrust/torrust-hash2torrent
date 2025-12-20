@@ -17,7 +17,7 @@ async fn main() -> Result<(), anyhow::Error> {
 
     let session_output_dir = "/var/lib/torrust/hash2torrent/session";
     let torrents_cache_dir = "/var/lib/torrust/hash2torrent/torrents";
-    let bind_address = SocketAddr::new(IpAddr::V4(Ipv4Addr::new(0, 0, 0, 0)), 3000);
+    let bind_address = SocketAddr::new(IpAddr::V4(Ipv4Addr::UNSPECIFIED), 3000);
 
     let config = Config {
         api: config::Api {
