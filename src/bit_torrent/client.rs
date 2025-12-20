@@ -88,10 +88,7 @@ impl Client {
                     AddTorrentResponse::AlreadyManaged(_, handle) => {
                         let metadata = handle.metadata.load();
                         if let Some(metadata) = &*metadata {
-                            (
-                                metadata.info.clone(),
-                                metadata.torrent_bytes.clone(),
-                            )
+                            (metadata.info.clone(), metadata.torrent_bytes.clone())
                         } else {
                             return Err(ResolveMagnetError::NotAdded);
                         }
