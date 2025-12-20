@@ -85,10 +85,17 @@ impl Client {
                 };
 
                 let (info, content) = match added {
-                    AddTorrentResponse::AlreadyManaged(_, handle) => (
-                        handle.shared().info.clone(),
-                        handle.shared().torrent_bytes.clone(),
-                    ),
+                    AddTorrentResponse::AlreadyManaged(_, handle) => {
+                        let metadata = handle.metadata.load();
+                        if let Some(metadata) = &*metadata {
+                            (
+                                metadata.info.clone(),
+                                metadata.torrent_bytes.clone(),
+                            )
+                        } else {
+                            return Err(ResolveMagnetError::NotAdded);
+                        }
+                    }
                     AddTorrentResponse::ListOnly(ListOnlyResponse {
                         info,
                         torrent_bytes,

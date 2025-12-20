@@ -65,8 +65,8 @@ pub async fn start(bind_to: &SocketAddr, state: AppState) {
         .expect("Axum server crashed.");
 }
 
-fn from_tcp_with_timeouts(socket: TcpListener) -> Server {
-    let mut server = axum_server::from_tcp(socket);
+fn from_tcp_with_timeouts(socket: TcpListener) -> Server<std::net::SocketAddr> {
+    let mut server = axum_server::from_tcp(socket).unwrap();
 
     server.http_builder().http1().timer(TokioTimer::new());
     server.http_builder().http2().timer(TokioTimer::new());
