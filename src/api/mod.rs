@@ -45,7 +45,7 @@ pub async fn start(bind_to: &SocketAddr, state: AppState) {
     let app = Router::new()
         .route("/", get(entrypoint_handler))
         .route("/health_check", get(health_check_handler))
-        .route("/torrents/:info_hash", get(get_metainfo_file_handler))
+        .route("/torrents/{info_hash}", get(get_metainfo_file_handler))
         .layer(TraceLayer::new_for_http())
         .layer(
             ServiceBuilder::new()
