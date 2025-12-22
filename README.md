@@ -45,22 +45,6 @@ You can check the API with the health_check endpoint: <http://127.0.0.1:3000/hea
 
 ## Troubleshooting
 
-### Tokio Runtime Error
-
-If you encounter an error like:
-
-```text
-Registering a blocking socket with the tokio runtime is unsupported. If you wish to do anyways, please add `--cfg tokio_allow_from_blocking_fd` to your RUSTFLAGS.
-```
-
-You need to set the RUSTFLAGS environment variable when building and running the application:
-
-```console
-RUSTFLAGS="--cfg tokio_allow_from_blocking_fd" cargo run
-```
-
-This is a known issue with the tokio runtime on certain systems. The flag allows the application to register blocking file descriptors with the async runtime.
-
 ### Session Directory Not Found
 
 If you see an error about the session output directory not being found:
