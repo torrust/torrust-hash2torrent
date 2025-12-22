@@ -34,6 +34,10 @@ pub async fn start(bind_to: &SocketAddr, state: AppState) {
     let socket =
         std::net::TcpListener::bind(bind_to).expect("Could not bind tcp_listener to address.");
 
+    socket
+        .set_nonblocking(true)
+        .expect("Failed to set socket to non-blocking mode");
+
     let server_address = socket
         .local_addr()
         .expect("Could not get local_addr from tcp_listener.");
